@@ -1,0 +1,52 @@
+﻿********Open SSH******
+
+Features
+***************
+1.Provide data encryption services on PKI - Confidentiality
+2.Primarily used to protect the transport layer
+3.Encrypted shell sessions, file transfer etc.
+4.Password-less login
+
+
+#service sshd restart
+#ckconfig --level 35 sshd on
+
+Practice:
+=========
+1.scp -secure,non interactive,copy program
+a.Server~#scp sample.txt root@192.168.0.253:Desktop
+
+This will copy sample text to the the root for remote system
+
+b.Server~#scp sample.txt root@192.168.0.3:test/sample.txt
+This will copy sample under /root/test folder in the remote station
+
+c.Server~#scp root@192.168.0.253:test/sample.txt sample2.txt
+This copies sample.txt from remote station to your local system as sample2.txt
+into your local homefolder.
+
+2.sftp -secure,interactive,FTP like, copy program
+
+a.sftp root@192.168.0.253
+
+Server~#sftp root@192.168.0.253
+
+Supply password for remote root user:redhat
+sftp>
+sftp>mget,mput,ls,cd / or Desktop and many other commands can be used here
+sftp>bye to exit
+
+From this shell you may upload and download files from a remote machine to and fro.
+
+3.ssh -shell based client
+a.ssh root@192.168.0.253
+
+4.ssh-keygen -used to generate ssh pub/private keypair
+#ssh-keygen -t rsa or #ssh-keygen -t dsa
+
+5.ssh-copy-id	-permits easy propagation of ssh pub/private key
+#ssh-copy-id -i /root/.ssh/id_rsa.pub	root@192.168.0.253
+
+This will copy your root's public key to remote station.253 under ./root/.ssh/authorized_keys
+With this file, now you can login to station:192.168.0.253 with the root user 
+new credentials generated above.

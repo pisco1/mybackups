@@ -1,0 +1,68 @@
+Databases
+---------
+
+1  MySQL
+   -----
+
+	A. Installation 
+	  ------------
+	run: 
+		"sudo apt-get install mysql-server"
+
+	check whether the MySQL server is running:
+		"sudo netstat -tap | grep mysql"
+		you should see the following line or something similar:
+		tcp 	0 	0 	localhost:mysql 	*:*	 LISTEN 	2556/mysqld
+
+	If the server is not running correctly, you can type the following command to start it:
+		"sudo service mysql restart"
+	
+	B. Configuration
+	   -------------
+	1. You can edit the /etc/mysql/my.cnf file to configure the basic settings -- log file, port number, etc.
+	For example config MySQL to listen for connection from network hosts, change the bind-address directive
+	    to server's IP address:
+		"bind-address 	= 192.168.20.1"
+		Replace 192.168.20.1 with the appropriate address.
+	After making changes to /etc/mysql/my.cnf, restart mysql daemon"
+		"sudo service mysql restart"
+
+	2. Type the following command if you want to change the root user's password:
+		"sudo dpkg-reconfigure mysql-server-5.5"
+
+	C. Advanced configuration
+           ---------------------- 
+        1. Creating a tuned my.cnf file
+	...
+	...
+
+	2. MySQL tuner: a useful tool that will connect to a running MySQL instance and offer suggestions
+		for how it can be best configured for your workload.
+	        installation:
+			"sudo apt-get install mysqltuner"
+		Then once its been installed, run it:
+			"mysqltuner"
+
+2   PostgreSQL
+    ----------
+	A. installation
+	   ------------
+	run:
+		"sudo apt-get install postgresql"
+
+	B. configurations
+	   --------------
+	PostgreSQLconfiguration files are stored in the /etc/postgresql/<version>/main directory
+	For example, if you install PostgreSQL 9.1, the configuration files are stored in 
+	    the /etc/postgresql/9.1/main directory.
+	    To enable other computers to connect to your PostgreSQL server, edit the 
+               file /etc/postgresql/9.1/main/postgresql.conf
+               Locate the line:
+		 #listen_addresses = 'localhost' and change it to:
+		 listen_addresses = '*'
+	...
+	...
+
+	  
+
+
